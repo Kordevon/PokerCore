@@ -4,8 +4,13 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal class CoOpController
+    public class Test
     {
+       
+      
+
+        
+
 
     }
 }
