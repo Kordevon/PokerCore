@@ -6,7 +6,7 @@ namespace PokerCore
 {
     internal class Hand
     {
-        public Hands HandType { get; set; } 
+        public HandRanks HandType { get; set; } 
         public int Score { get; private set; } 
         public List<Card> Cards { get; } 
 
@@ -43,6 +43,11 @@ namespace PokerCore
             }
             this.Score += (int)newCard.Rank;
             Cards.Add(newCard);
+        }
+
+        public override string ToString()
+        {
+            return this.HandType.ToString();
         }
     }
 

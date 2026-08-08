@@ -5,8 +5,11 @@ using System.Text;
 
 namespace PokerCore
 {
+   
     internal readonly record struct Card(Suits suit, Ranks rank) : IComparable
     {
+
+       
         public Suits Suit { get; } = suit;
         public Ranks Rank { get; } = rank;
         public bool SameRank(Card otherCard)
