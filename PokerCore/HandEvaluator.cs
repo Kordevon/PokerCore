@@ -78,7 +78,7 @@ namespace PokerCore
         private Card GetCard(int card)
         { 
             Ranks rank = (Ranks)((card & 0xf00) >> 8);
-            Suits suit = (Suits)(card & 0xf000);
+            Suits suit = (Suits)(card & 0xf000>>16);
 
             return new Card(suit, rank);
         }
