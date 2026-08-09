@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal enum Suits
+    public enum Suits
     {
         Clubs,
         Diamonds,

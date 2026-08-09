@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal class Hand
+    public class Hand
     {
         public HandRanks HandType { get;private set; } 
         public int Score { get; set; } 
@@ -30,8 +30,11 @@ namespace PokerCore
         public void RemoveLowest()
         {
             Cards.OrderBy(x => x.Rank);
-            Card lowest = Cards.FirstOrDefault();
-            this.Score -= (int)lowest.Rank;
+            Card? lowest = Cards.FirstOrDefault();
+            if (lowest != null)
+            {
+                this.Score -= (int)lowest.Rank;
+            }
         }
 
 

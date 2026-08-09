@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal enum Ranks
+    public enum Ranks
     {
         Two = 2,
         Three = 3,

@@ -6,7 +6,7 @@ using System.Text;
 namespace PokerCore
 {
    
-    internal readonly record struct Card(Suits suit, Ranks rank) : IComparable
+    public class Card(Suits suit, Ranks rank) : IComparable
     {
 
        
@@ -38,7 +38,7 @@ namespace PokerCore
         }
         public override string ToString()
         {
-            return "{" + RanksExtended.RanksToString(rank) + " of " + SuitsExtended.ToString(suit) +"}";
+            return "{" + RanksExtended.RanksToString(Rank) + " of " + SuitsExtended.ToString(Suit) +"}";
         }
 
     }

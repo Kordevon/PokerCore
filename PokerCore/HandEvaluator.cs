@@ -13,7 +13,7 @@ namespace PokerCore
      * This class is a Csharp implementation of the poker evaluator available here:
      * https://github.com/suffecool/pokerlib
      */
-    internal class HandEvaluator
+    public class HandEvaluator
     {
         private const int CLUB = 0x8000;
         private const int DIAMOND = 0x4000;

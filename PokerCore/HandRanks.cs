@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal enum HandRanks
+    public enum HandRanks
     {
         Royal_Flush,
         STRAIGHT_FLUSH,
