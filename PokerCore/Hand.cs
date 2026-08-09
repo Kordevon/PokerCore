@@ -7,7 +7,7 @@ namespace PokerCore
     internal class Hand
     {
         public HandRanks HandType { get;private set; } 
-        public int Score { get; private set; } 
+        public int Score { get; set; } 
         public List<Card> Cards { get; } 
         private bool HandTypeSet= false;
         
@@ -53,7 +53,6 @@ namespace PokerCore
         {
             string result = "{";
             string handType = "";
-            string cards ="";
             if (HandTypeSet)
             {
                 handType = HandRanksExtended.ToString(this.HandType);

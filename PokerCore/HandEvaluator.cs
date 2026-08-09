@@ -163,6 +163,7 @@ namespace PokerCore
                     {
                         bestHand.Cards.Add(GetCard(subhand[k]));
                         bestHand.SetHandType(HandRank(q));
+                        bestHand.Score = q;
                     }
                 }
             }
