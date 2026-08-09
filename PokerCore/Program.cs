@@ -5,25 +5,25 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Running Tests");
-
-            Card As = new Card(Suits.Spades, Ranks.Ace);
-            Card Ad = new Card(Suits.Diamonds, Ranks.Ace);
-            Card Ac = new Card(Suits.Clubs, Ranks.Ace);
             Card Ah = new Card(Suits.Hearts, Ranks.Ace);
+            Card Kh = new Card(Suits.Hearts, Ranks.King);
+            Card Qh = new Card(Suits.Hearts, Ranks.Queen);
+            Card Jh = new Card(Suits.Hearts, Ranks.Jack);
+            Card Th = new Card(Suits.Hearts, Ranks.Ten);
             Card Twos = new Card(Suits.Spades, Ranks.Two);
-            Card Twod = new Card(Suits.Diamonds, Ranks.Two);
-            Card TwoH = new Card(Suits.Hearts, Ranks.Two);
+            Card Sevend = new Card(Suits.Diamonds, Ranks.Seven);
+
             Hand hand = new Hand();
             hand.Add(Ah);
-            hand.Add(As);
-            hand.Add(Ac);
-            hand.Add(Ah);
+            hand.Add(Kh);
+            hand.Add(Qh);
+            hand.Add(Jh);
+            hand.Add(Th);
             hand.Add(Twos);
-            hand.Add(Twod);
-            hand.Add(TwoH);
+            hand.Add(Sevend);
+
             Console.WriteLine($"Hand is:{hand.ToString()}");
             HandEvaluator handEval = HandEvaluator.CreateHandEvaluator();
-            Console.WriteLine(As);
             Console.WriteLine(handEval.EvaluateHand(hand));
 
         }

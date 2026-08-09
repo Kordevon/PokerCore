@@ -7,8 +7,8 @@ namespace PokerCore
     internal enum Suits
     {
         Clubs,
-        Spades,
         Diamonds,
-        Hearts
+        Hearts,
+        Spades
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -20,7 +21,7 @@ namespace PokerCore
         private const int SPADE = 0x1000;
         private int[] Deck = new int[52];
         private static HandEvaluator? Instance;
-        private static readonly int[] PRIMES = new int[13] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 };
+        private static readonly int[] PRIMES = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 };
 
         private HandEvaluator()
         {
@@ -78,8 +79,25 @@ namespace PokerCore
         private Card GetCard(int card)
         { 
             Ranks rank = (Ranks)((card & 0xf00) >> 8);
-            Suits suit = (Suits)(card & 0xf000>>16);
-
+            int suitInt = ((card & 0xf000));
+            Suits suit;
+            switch (suitInt)
+            {
+                case CLUB:
+                    suit = Suits.Clubs;
+                    break;
+                case DIAMOND:
+                    suit = Suits.Diamonds;
+                    break;
+                case SPADE:
+                    suit = Suits.Spades;
+                    break;
+                case HEART:
+                    suit = Suits.Hearts;
+                    break;
+                default:
+                    throw new ArgumentException($"Unrecognized suit bits: {suitInt:X}");
+            }
             return new Card(suit, rank);
         }
     
@@ -87,7 +105,7 @@ namespace PokerCore
         {
             uint q =(uint)(c1 | c2 | c3 | c4 | c5) >> 16;
             ushort s;
-            if ((c1 & c1 & c3 & c4 & c5 & 0xf000) >0)
+            if ((c1 & c2 & c3 & c4 & c5 & 0xf000) >0)
                 return Data.Flushes[q];
             if((s= Data.unique5[q])>0)
             {
@@ -120,8 +138,8 @@ namespace PokerCore
             if (val > 322) return HandRanks.FLUSH;            // 1277 flushes
             if (val > 166) return HandRanks.FULL_HOUSE;       //  156 full house
             if (val > 10) return HandRanks.FOUR_OF_A_KIND;   //  156 four-kind
-            if (val == 0) return HandRanks.Royal_Flush;
-            return HandRanks.STRAIGHT_FLUSH;
+            if (val > 1) return  HandRanks.STRAIGHT_FLUSH;
+            return HandRanks.Royal_Flush;
         }
 
         private Hand GetBestHand(int[] hand)
@@ -135,18 +153,17 @@ namespace PokerCore
                 for (int j = 0; j < 5; j++)
                 {
                     subhand[j] = hand[Data.perms7[i, j]];
-                    int q = this.EvaluateFiveHand(subhand[0], subhand[1], subhand[2], subhand[3], subhand[4]);
-                    if (q < best)
+                }
+                int q = this.EvaluateFiveHand(subhand[0], subhand[1], subhand[2], subhand[3], subhand[4]);
+                if (q < best)
+                {
+                    best = q;
+                    bestHand = new Hand();
+                    for (int k = 0; k < 5; k++)
                     {
-                        best = q;
-                        bestHand = new Hand();
-                        for(int k = 0; k < 5; k++)
-                        {
-                            bestHand.Cards.Add(GetCard(subhand[k]));
-                            bestHand.SetHandType(HandRank(q));
-                        }
+                        bestHand.Cards.Add(GetCard(subhand[k]));
+                        bestHand.SetHandType(HandRank(q));
                     }
-
                 }
             }
             return bestHand;

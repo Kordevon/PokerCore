@@ -47,6 +47,7 @@ namespace PokerCore
         public void SetHandType(HandRanks handRank)
         {
             this.HandType = handRank;
+            HandTypeSet = true;
         }
         public override string ToString()
         {
@@ -72,7 +73,7 @@ namespace PokerCore
                 }
                 
             }
-            return result;
+            return result + "}";
             
         }
     }
