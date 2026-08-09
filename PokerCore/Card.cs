@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 
 namespace PokerCore
 {
    
-    public class Card(Suits suit, Ranks rank) : IComparable
+    public class Card : IComparable
     {
 
        
-        public Suits Suit { get; } = suit;
-        public Ranks Rank { get; } = rank;
+        public Suits Suit { get; } 
+        public Ranks Rank { get; } 
+
+        public Card(Suits suits, Ranks rank)
+        {
+            Suit = suits;
+            Rank = rank;
+        }
         public bool SameRank(Card otherCard)
         {
             return this.Rank.Equals(otherCard.Rank);
@@ -32,9 +35,10 @@ namespace PokerCore
         public int CompareTo(object? obj)
         { 
             if (obj is null) return 1;
-            if (obj is not Card other)
+            Card? otherCard = obj as Card;
+            if (otherCard is null)
                 throw new ArgumentException("Object is not a Card", nameof(obj));
-            return (int)this.Rank - (int)other.Rank;
+            return (int)this.Rank - (int)otherCard.Rank;
         }
         public override string ToString()
         {
