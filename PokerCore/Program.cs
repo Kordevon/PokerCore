@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Running Tests");
-           
+
             Card As = new Card(Suits.Spades, Ranks.Ace);
             Card Ad = new Card(Suits.Diamonds, Ranks.Ace);
             Card Ac = new Card(Suits.Clubs, Ranks.Ace);
@@ -23,6 +23,7 @@
             hand.Add(TwoH);
             Console.WriteLine($"Hand is:{hand.ToString()}");
             HandEvaluator handEval = HandEvaluator.CreateHandEvaluator();
+            Console.WriteLine(As);
             Console.WriteLine(handEval.EvaluateHand(hand));
 
         }

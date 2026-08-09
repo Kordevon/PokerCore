@@ -143,7 +143,7 @@ namespace PokerCore
                         for(int k = 0; k < 5; k++)
                         {
                             bestHand.Cards.Add(GetCard(subhand[k]));
-                            bestHand.HandType = HandRank(q);
+                            bestHand.SetHandType(HandRank(q));
                         }
                     }
 
