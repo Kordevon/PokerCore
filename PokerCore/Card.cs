@@ -36,6 +36,11 @@ namespace PokerCore
                 throw new ArgumentException("Object is not a Card", nameof(obj));
             return (int)this.Rank - (int)other.Rank;
         }
+        public override string ToString()
+        {
+            return "{" + RanksExtended.RanksToString(rank) + " of " + SuitsExtended.ToString(suit) +"}";
+        }
+
     }
    
 }

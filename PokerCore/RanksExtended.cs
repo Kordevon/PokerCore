@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PokerCore
 {
-    internal class RanksExtension
+    internal class RanksExtended
     {
         public static Ranks PrimaryToRank(RanksPrimary primary) => primary switch
         {
@@ -41,6 +41,24 @@ namespace PokerCore
             Ranks.Three => "Three",
             Ranks.Two=> "Two",
             _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, "Unhandled RanksPrimary Value")
+        };
+        public static Ranks StringToRanks(string rank) => (rank).ToLower().Trim() switch
+        {
+            "ace" => Ranks.Ace,
+            "king" => Ranks.King,
+            "queen" => Ranks.Queen,
+            "jack" => Ranks.Jack,
+            "ten" => Ranks.Ten,
+            "nine" => Ranks.Nine,
+            "eight" => Ranks.Eight,
+            "seven" => Ranks.Seven,
+            "six" => Ranks.Six,
+            "five" => Ranks.Five,
+            "four" => Ranks.Four,
+            "three" => Ranks.Three,
+            "two" => Ranks.Two,
+            _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, "Unhandled RanksPrimary Value")
+
         };
     }
 }

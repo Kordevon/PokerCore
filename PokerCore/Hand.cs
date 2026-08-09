@@ -6,10 +6,10 @@ namespace PokerCore
 {
     internal class Hand
     {
-        public HandRanks HandType { get; set; } 
+        public HandRanks HandType { get;private set; } 
         public int Score { get; private set; } 
         public List<Card> Cards { get; } 
-
+        private bool HandTypeSet= false;
         
         public Hand()
         {
@@ -44,10 +44,36 @@ namespace PokerCore
             this.Score += (int)newCard.Rank;
             Cards.Add(newCard);
         }
-
+        public void SetHandType(HandRanks handRank)
+        {
+            this.HandType = handRank;
+        }
         public override string ToString()
         {
-            return this.HandType.ToString();
+            string result = "{";
+            string handType = "";
+            string cards ="";
+            if (HandTypeSet)
+            {
+                handType = HandRanksExtended.ToString(this.HandType);
+                result += "Hand Type: " + handType +", ";
+            }
+
+            result += "Cards: ";
+            foreach (Card card in Cards)
+            {
+                if (Cards.LastOrDefault() == card)
+                {
+                    result += card.ToString();
+                }
+                else
+                {
+                    result += card.ToString() + ", ";
+                }
+                
+            }
+            return result;
+            
         }
     }
 
