@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Linq;
 
 namespace PokerCore
 {
-    internal class Deck
+    public class Deck
     {
         public List<Card> Cards;
         private int Index;
@@ -29,13 +27,16 @@ namespace PokerCore
             Cards = createDeck();
             Index= 0;
         }
-
+        public int Count()
+        {
+            return Cards.Count;
+        }
         public List<Card> createDeck()
         {
             List<Card> newCards = new List<Card>();
-            foreach (Suits suit in Enum.GetValues<Suits>())
+            foreach (Suits suit in Enum.GetValues(typeof(Suits)).Cast<Suits>())
             {
-                foreach (Ranks rank in Enum.GetValues<Ranks>())
+                foreach (Ranks rank in Enum.GetValues(typeof(Ranks)).Cast<Ranks>())
                 {
                     Cards.Add(new Card(suit, rank));
                 }
