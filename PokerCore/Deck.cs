@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PokerCore
 {
-    internal class Deck
+    public class Deck
     {
         public List<Card> Cards;
         private int Index;
@@ -27,7 +27,10 @@ namespace PokerCore
             Cards = createDeck();
             Index= 0;
         }
-
+        public int Count()
+        {
+            return Cards.Count;
+        }
         public List<Card> createDeck()
         {
             List<Card> newCards = new List<Card>();
