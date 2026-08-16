@@ -52,6 +52,10 @@ namespace PokerCore
             this.HandType = handRank;
             HandTypeSet = true;
         }
+        public int Count()
+        {
+            return this.Cards.Count;
+        }
         public override string ToString()
         {
             string result = "{";
